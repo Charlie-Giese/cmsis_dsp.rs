@@ -27,6 +27,8 @@ extern crate cmsis_dsp_sys_pregenerated as cmsis_dsp_sys;
 pub mod basic;
 pub mod transform;
 pub mod complex;
+pub mod filter;
+pub mod statistics;
 #[cfg(feature = "libm")]
 mod libm_c;
 #[cfg(all(feature = "micromath", not(feature = "libm")))]
