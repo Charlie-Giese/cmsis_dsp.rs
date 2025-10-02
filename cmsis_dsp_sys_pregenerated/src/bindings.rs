@@ -8085,6 +8085,30 @@ extern "C" {
     pub fn arm_rms_q15(pSrc: *const q15_t, blockSize: u32, pResult: *mut q15_t);
 }
 extern "C" {
+    #[doc = " @brief Mean Square Error between two vectors of floating-point values."]
+    #[doc = " @param[in]  pSrcA      is the first input vector"]
+    #[doc = " @param[in]  pSrcB      is the second input vector"]
+    #[doc = " @param[in]  blockSize  is the number of samples in each vector"]
+    #[doc = " @param[out] pResult    is the mean square error value"]
+    pub fn arm_mse_f32(pSrcA: *const float32_t, pSrcB: *const float32_t, blockSize: u32, pResult: *mut float32_t);
+}
+extern "C" {
+    #[doc = " @brief Mean Square Error between two vectors of Q31 values."]
+    #[doc = " @param[in]  pSrcA      is the first input vector"]
+    #[doc = " @param[in]  pSrcB      is the second input vector"]
+    #[doc = " @param[in]  blockSize  is the number of samples in each vector"]
+    #[doc = " @param[out] pResult    is the mean square error value"]
+    pub fn arm_mse_q31(pSrcA: *const q31_t, pSrcB: *const q31_t, blockSize: u32, pResult: *mut q31_t);
+}
+extern "C" {
+    #[doc = " @brief Mean Square Error between two vectors of Q15 values."]
+    #[doc = " @param[in]  pSrcA      is the first input vector"]
+    #[doc = " @param[in]  pSrcB      is the second input vector"]
+    #[doc = " @param[in]  blockSize  is the number of samples in each vector"]
+    #[doc = " @param[out] pResult    is the mean square error value"]
+    pub fn arm_mse_q15(pSrcA: *const q15_t, pSrcB: *const q15_t, blockSize: u32, pResult: *mut q15_t);
+}
+extern "C" {
     #[doc = " @brief  Standard deviation of the elements of a floating-point vector."]
     #[doc = " @param[in]  pSrc       is input pointer"]
     #[doc = " @param[in]  blockSize  is the number of samples to process"]

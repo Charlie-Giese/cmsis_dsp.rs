@@ -1,4 +1,6 @@
 use crate::check_length;
+use fixed::types::{I16F48, I18F14, I1F15, I1F31, I1F7, I34F30};
+
 
 /// Calculates the rms of a sequence of f32 values.
 ///
@@ -72,4 +74,39 @@ pub fn min_f32(src: &[f32], size: usize, dst_value: &mut f32, dst_index: &mut u3
     }
 }
 
-pub fn xa() {}
+/// Calculates the mean square error value of a sequence of f32 values.
+///
+/// # Panics
+///
+/// This function panics if srcs does not have 'size' elements.
+pub fn mse_f32(src_a: &[f32], src_b: &[f32], size: usize, dst: &mut f32) {
+    let length = check_length((src_a.len(), src_b.len(), size));
+    unsafe {
+        cmsis_dsp_sys::arm_mse_f32(src_a.as_ptr(), src_b.as_ptr(), length, dst);
+    }
+}
+
+/// Calculates the mean square error value of a sequence of q31 values.
+///
+/// # Panics
+///
+/// This function panics if srcs does not have 'size' elements.
+pub fn mse_q31(src_a: &[I1F31], src_b: &[I1F31], size: usize, dst: &mut [I1F31]) {
+    let length = check_length((src_a.len(), src_b.len(), size));
+    unsafe {
+        cmsis_dsp_sys::arm_mse_q31(src_a.as_ptr() as *const _, src_b.as_ptr() as *const _, length, dst.as_mut_ptr() as *mut _);
+    }
+}
+
+/// Calculates the mean square error value of a sequence of q15 values.
+///
+/// # Panics
+///
+/// This function panics if src does not have 'size' elements.
+pub fn mse_q15(src_a: &[I1F15], src_b: &[I1F15], size: usize, dst: &mut [I1F15]) {
+    let length = check_length((src_a.len(), src_b.len(), size));
+    unsafe {
+        cmsis_dsp_sys::arm_mse_q15(src_a.as_ptr() as *const _, src_b.as_ptr() as *const _, length, dst.as_mut_ptr() as *mut _);
+    }
+}
+
